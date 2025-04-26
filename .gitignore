@@ -1,0 +1,16 @@
+# Python
+*.pyc
+__pycache__/
+
+# Django
+*.sqlite3
+*.log
+
+# Environment
+.env
+
+# VSCode
+.vscode/
+
+# Migrations
+**/migrations/
