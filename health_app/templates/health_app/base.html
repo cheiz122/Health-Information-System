@@ -1,0 +1,30 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Health App{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Health App</h1>
+            <nav>
+                <a href="{% url 'health_app:list_patients' %}">Patients</a>
+                <a href="{% url 'health_app:list_enrollments' %}">Enrollments</a>
+                <a href="{% url 'health_app:doctor_patients' %}">Doctor</a>
+                <a href="{% url 'health_app:pharmacy_queue' %}">Pharmacy</a>
+                <a href="{% url 'health_app:admin_overview' %}">Admin</a>
+                
+            </nav>
+        </div>
+    </header>
+    <main class="container">
+        {% block content %}{% endblock %}
+    </main>
+    <footer class="container">
+        &copy; {{ now.year }} Health App
+    </footer>
+</body>
+</html>

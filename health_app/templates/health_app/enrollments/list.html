@@ -1,0 +1,27 @@
+{% extends 'health_app/base.html' %}
+{% block title %}Enrollments{% endblock %}
+{% block content %}
+<h2>Enrollments</h2>
+<form method="get">
+    <input type="text" name="q" value="{{ q }}" placeholder="Search enrollments...">
+    <button type="submit">Search</button>
+</form>
+<table>
+    <thead>
+        <tr><th>Patient</th><th>Program</th><th>Enrolled On</th><th>Status</th></tr>
+    </thead>
+    <tbody>
+    {% for e in enrollments %}
+        <tr>
+            <td>{{ e.patient.name }}</td>
+            <td>{{ e.program.name }}</td>
+            <td>{{ e.enrolled_on }}</td>
+            <td>{{ e.status }}</td>
+        </tr>
+    {% empty %}
+        <tr><td colspan="4">No enrollments found.</td></tr>
+    {% endfor %}
+    </tbody>
+</table>
+<a class="button" href="{% url 'health_app:create_enrollment' %}">Add Enrollment</a>
+{% endblock %}

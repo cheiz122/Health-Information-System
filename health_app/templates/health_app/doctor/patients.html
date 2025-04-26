@@ -1,0 +1,26 @@
+{% extends 'health_app/base.html' %}
+{% block title %}Doctor's Patients{% endblock %}
+{% block content %}
+<h2>Doctor - {{ program.name }}</h2>
+<form method="get">
+    <input type="text" name="q" value="{{ q }}" placeholder="Search patients...">
+    <button type="submit">Search</button>
+</form>
+<table>
+    <thead>
+        <tr><th>Name</th><th>Age</th><th>Contact</th><th>Action</th></tr>
+    </thead>
+    <tbody>
+    {% for patient in patients %}
+        <tr>
+            <td>{{ patient.name }}</td>
+            <td>{{ patient.age }}</td>
+            <td>{{ patient.contact }}</td>
+            <td><a href="{% url 'health_app:create_diagnosis' %}?enrollment={{ patient.enrollments.first.id }}">Diagnose</a></td>
+        </tr>
+    {% empty %}
+        <tr><td colspan="4">No patients assigned.</td></tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

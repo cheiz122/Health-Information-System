@@ -1,0 +1,7 @@
+{% extends 'health_app/base.html' %}
+{% block title %}Dispense Receipt{% endblock %}
+{% block content %}
+<h2>Dispensed Successfully</h2>
+<p>Diagnosis ID: {{ diag.id }}</p>
+<p>Dispensed On: {{ diag.dispensed_on }}</p>
+{% endblock %}

@@ -1,0 +1,8 @@
+{% extends 'health_app/base.html' %}
+{% block title %}Patient Receipt{% endblock %}
+{% block content %}
+<h2>New Patient Registered</h2>
+<p>Name: {{ patient.name }}</p>
+<p>Contact: {{ patient.contact }}</p>
+<p>Registered On: {{ patient.id }}</p>
+{% endblock %}

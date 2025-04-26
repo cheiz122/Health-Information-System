@@ -1,0 +1,37 @@
+{% extends 'health_app/base.html' %}
+{% block title %}Admin Overview{% endblock %}
+{% block content %}
+<h2>Admin Overview</h2>
+<div class="stats">
+    <div class="card">Patients: {{ patients_count }}</div>
+    <div class="card">Enrollments: {{ total_enrollments }}</div>
+    <div class="card">Dispensed: {{ dispensed_count }}</div>
+    <div class="card">Not Dispensed: {{ not_dispensed_count }}</div>
+</div>
+<h3>Enrollments by Program</h3>
+<ul>
+{% for prog in programs_summary %}
+    <li>{{ prog.program__name }}: {{ prog.count }}</li>
+{% endfor %}
+</ul>
+
+<h3>Diagnoses by Doctor</h3>
+<ul>
+{% for doc in doctor_diagnoses %}
+    <li>{{ doc.created_by__username }}: {{ doc.count }}</li>
+{% endfor %}
+</ul>
+
+<h3>Search Patient by Contact</h3>
+<form method="get">
+    <input type="text" name="contact" placeholder="Contact">
+    <button type="submit">Search</button>
+</form>
+{% if searched_patient %}
+    <div class="card">
+        <h4>{{ searched_patient.name }}</h4>
+        <p>Contact: {{ searched_patient.contact }}</p>
+        <p>Enrolled: {{ searched_patient.enrollments.count }}</p>
+    </div>
+{% endif %}
+{% endblock %}

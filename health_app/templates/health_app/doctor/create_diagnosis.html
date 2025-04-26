@@ -1,0 +1,17 @@
+<form method="POST">
+    {% csrf_token %}
+    <label for="diagnosis">Diagnosis:</label>
+    <textarea id="diagnosis" name="diagnosis" rows="4" cols="50" required></textarea>
+
+    <label for="recommendations">Recommendations:</label>
+    <textarea id="recommendations" name="recommendations" rows="4" cols="50" required></textarea>
+
+    <label for="enrollment">Enrollment:</label>
+    <select id="enrollment" name="enrollment" required>
+        {% for enrollment in enrollments %}
+            <option value="{{ enrollment.id }}">{{ enrollment.patient.name }} - {{ enrollment.program.name }}</option>
+        {% endfor %}
+    </select>
+
+    <button type="submit">Submit Diagnosis</button>
+</form>

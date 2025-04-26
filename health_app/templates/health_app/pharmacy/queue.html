@@ -1,0 +1,41 @@
+{% extends 'health_app/base.html' %}
+{% block title %}Pharmacy Queue{% endblock %}
+{% block content %}
+<h2>Pharmacy Queue</h2>
+<h3>Pending</h3>
+<table>
+    <thead>
+        <tr><th>Patient</th><th>Program</th><th>Diagnosed On</th><th>Action</th></tr>
+    </thead>
+    <tbody>
+    {% for d in undispensed_diagnoses %}
+        <tr>
+            <td>{{ d.enrollment.patient.name }}</td>
+            <td>{{ d.enrollment.program.name }}</td>
+            <td>{{ d.created_on }}</td>
+            <td><a href="{% url 'health_app:dispense' d.id d.enrollment.id %}">Dispense</a></td>
+        </tr>
+    {% empty %}
+        <tr><td colspan="4">No pending items.</td></tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+<h3>Dispensed</h3>
+<table>
+    <thead>
+        <tr><th>Patient</th><th>Program</th><th>Dispensed On</th></tr>
+    </thead>
+    <tbody>
+    {% for d in dispensed_diagnoses %}
+        <tr>
+            <td>{{ d.enrollment.patient.name }}</td>
+            <td>{{ d.enrollment.program.name }}</td>
+            <td>{{ d.dispensed_on }}</td>
+        </tr>
+    {% empty %}
+        <tr><td colspan="3">No dispensed items.</td></tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

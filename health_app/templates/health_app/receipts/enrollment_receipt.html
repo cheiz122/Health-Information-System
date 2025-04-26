@@ -1,0 +1,8 @@
+{% extends 'health_app/base.html' %}
+{% block title %}Enrollment Receipt{% endblock %}
+{% block content %}
+<h2>Enrollment Successful</h2>
+<p>Patient ID: {{ enrollment.patient }}</p>
+<p>Program ID: {{ enrollment.program }}</p>
+<p>Status: {{ enrollment.status }}</p>
+{% endblock %}
